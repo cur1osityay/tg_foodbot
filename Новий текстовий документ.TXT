@@ -1,0 +1,458 @@
+import telebot
+from random import randint
+from telebot import types
+
+TOKEN = '995973993:AAHyybPtPvvxXoGXxeSnaZ8wp52qu5XXxFo'
+bot = telebot.TeleBot(TOKEN)
+
+
+@bot.message_handler(commands=['start'])
+def welcome(message):
+    # keyboard
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    item1 = types.KeyboardButton("Рандом рецепт")
+    item2 = types.KeyboardButton("Рецепти")
+    item3 = types.KeyboardButton("Фото-Рецепти")
+    item4 = types.KeyboardButton("Інгредієнти")
+
+    markup.add(item1, item2, item3, item4)
+
+    bot.send_message(message.chat.id,
+                     "Привіт, {0.first_name}!\nЯ - <b>{1.first_name}</b>, бот, в якому зібрано дуже багато рецептів".format(
+                         message.from_user, bot.get_me()),
+                     parse_mode='html', reply_markup=markup)
+
+
+@bot.message_handler(content_types=['text'])
+def lalala(message):
+    item = [0] * 48
+    products = [0] * 100
+    item[0] = types.InlineKeyboardButton("Борщ", callback_data='rcp1')
+    item[1] = types.InlineKeyboardButton("Вареники з картоплею", callback_data='rcp2')
+    item[2] = types.InlineKeyboardButton("Тартелики з червоною рибою та сиром", callback_data='rcp3')
+    item[3] = types.InlineKeyboardButton("Шашлик в гранатовому соку", callback_data='rcp4')
+    item[4] = types.InlineKeyboardButton("Салат із крабових палочок та мівіни", callback_data='rcp5')
+    item[5] = types.InlineKeyboardButton("Гуляш", callback_data='rcp6')
+    item[6] = types.InlineKeyboardButton("Вафельні трубочки на маргарині", callback_data='rcp7')
+    item[7] = types.InlineKeyboardButton("Оладки з дріжджами", callback_data='rcp8')
+    item[8] = types.InlineKeyboardButton("Хрусткі сирні крокети з плавленим сиром", callback_data='rcp9')
+    item[9] = types.InlineKeyboardButton("Сирний суп з шафраном", callback_data='rcp10')
+    item[10] = types.InlineKeyboardButton("Рибні котлети", callback_data='rcp11')
+    item[11] = types.InlineKeyboardButton("Класичні деруни", callback_data='rcp12')
+    item[12] = types.InlineKeyboardButton("Бананові панкейки", callback_data='rcp13')
+    item[13] = types.InlineKeyboardButton("Гарбуз в духовці", callback_data='rcp14')
+    item[14] = types.InlineKeyboardButton("Полуничний шейк", callback_data='rcp15')
+    item[15] = types.InlineKeyboardButton("Домашній йогурт", callback_data='rcp16')
+    item[16] = types.InlineKeyboardButton("Солені зелені томати на зиму", callback_data='rcp17')
+    item[17] = types.InlineKeyboardButton("Суп п'юре з броколі", callback_data='rcp18')
+    item[18] = types.InlineKeyboardButton("Фрапе в домашніх умовах", callback_data='rcp19')
+    item[19] = types.InlineKeyboardButton("Англійське рагу із гарбуза", callback_data='rcp20')
+    item[20] = types.InlineKeyboardButton("Заморожені овочі в духовці", callback_data='rcp21')
+    item[21] = types.InlineKeyboardButton("Запечена картопля з грибами", callback_data='rcp22')
+    item[22] = types.InlineKeyboardButton("Картопля в часниковому соусі", callback_data='rcp23')
+    item[23] = types.InlineKeyboardButton("Кіш з домашнім плавленим сиром та грибами", callback_data='rcp24')
+    item[24] = types.InlineKeyboardButton("Котлети із капусти", callback_data='rcp25')
+    item[25] = types.InlineKeyboardButton("Курячі відбивні в картопляній шубці", callback_data='rcp26')
+    item[26] = types.InlineKeyboardButton("Піца з лососем та цибулею", callback_data='rcp27')
+    item[27] = types.InlineKeyboardButton("Соковиті голубці", callback_data='rcp28')
+    item[28] = types.InlineKeyboardButton("Чахохбілі іх курки", callback_data='rcp29')
+    item[29] = types.InlineKeyboardButton("Млинці з мясом", callback_data='rcp30')
+    item[30] = types.InlineKeyboardButton("Смузі з бананом", callback_data='rcp31')
+    item[31] = types.InlineKeyboardButton("Бананове морозиво", callback_data='rcp32')
+    item[32] = types.InlineKeyboardButton("Деруни з сиром", callback_data='rcp33')
+    item[33] = types.InlineKeyboardButton("Закуска з крабових паличок, яєць і сиру", callback_data='rcp34')
+    item[34] = types.InlineKeyboardButton("Запечена картопля з йогуртовим соусом", callback_data='rcp35')
+    item[35] = types.InlineKeyboardButton("Зелений салат з криветками та сирним омлетом", callback_data='rcp36')
+    item[36] = types.InlineKeyboardButton("Йогуртовий соус із зеленню та яйцем", callback_data='rcp37')
+    item[37] = types.InlineKeyboardButton("Краннач", callback_data='rcp38')
+    item[38] = types.InlineKeyboardButton("Овочевий салат із сирними кульками", callback_data='rcp39')
+    item[39] = types.InlineKeyboardButton("Пісто", callback_data='rcp40')
+    item[40] = types.InlineKeyboardButton("Салат “Цезар”", callback_data='rcp41')
+    item[41] = types.InlineKeyboardButton("Свинина з кисло-солодким перцем", callback_data='rcp42')
+    item[42] = types.InlineKeyboardButton("Сирна запіканка з білим шоколадом та малиною", callback_data='rcp43')
+    item[43] = types.InlineKeyboardButton("Смажений лосось з грейпфрутовим соусом", callback_data='rcp44')
+    item[44] = types.InlineKeyboardButton("Тушкована яловичина з гарбузом в пиві", callback_data='rcp45')
+    item[45] = types.InlineKeyboardButton("Фаршированні кабачки", callback_data='rcp46')
+    item[46] = types.InlineKeyboardButton("Французький салат Нісуаз", callback_data='rcp47')
+    item[47] = types.InlineKeyboardButton("Мясний салат з овочами по-корейськи", callback_data='rcp48')
+    products[0] = types.InlineKeyboardButton("Гарбуз", callback_data='prod1')
+    products[1] = types.InlineKeyboardButton("Картопля", callback_data='prod2')
+    products[2] = types.InlineKeyboardButton("Мед", callback_data='prod3')
+    products[3] = types.InlineKeyboardButton("Брокколі", callback_data='prod4')
+    products[4] = types.InlineKeyboardButton("Коньяк", callback_data='prod5')
+    products[5] = types.InlineKeyboardButton("Малина", callback_data='prod6')
+    if message.chat.type == 'private':
+        if message.text == 'Рандом рецепт':
+            markup00 = types.InlineKeyboardMarkup(row_width=1)
+            while True:
+                x = randint(0, 48)
+                y = randint(0, 48)
+                z = randint(0, 48)
+                if x != y and x != z and y != z: break
+            markup00.add(item[x], item[y], item[z])
+            bot.send_message(message.chat.id, 'Ось твої рецепти', reply_markup=markup00)
+        elif message.text == 'Рецепти':
+            markup = types.InlineKeyboardMarkup(row_width=3)
+            markup.add(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7],
+                       item[8], item[9], item[10], item[11], item[12], item[13], item[14],
+                       item[15], item[16], item[17], item[18], item[19], item[20], item[21],
+                       item[22], item[23], item[24], item[25], item[26], item[27], item[28],
+                       item[29], item[30])
+
+            bot.send_message(message.chat.id, 'Ось твої рецепти', reply_markup=markup)
+        elif message.text == 'Фото-Рецепти':
+            markup01 = types.InlineKeyboardMarkup(row_width=3)
+            markup01.add(item[31], item[32], item[33], item[34], item[35], item[36],
+                         item[37], item[38], item[39], item[40], item[41],
+                         item[42], item[43], item[44], item[45], item[46], item[47], )
+            bot.send_message(message.chat.id,
+                             'Ось твої рецепти, в кінці рецепту буле надана силка на сайт звідки цей рецепт було взяти(якщо щось не зрозуміло в описі приготування, радимо зайти)Смачного:)',
+                             reply_markup=markup01)
+        elif message.text == 'Інгредієнти':
+            markup02 = types.InlineKeyboardMarkup(row_width=3)
+            markup02.add(products[0], products[1], products[2], products[3], products[4],
+                         products[5])
+            bot.send_message(message.chat.id, 'Ось твої рецепти', reply_markup=markup02)
+
+        else:
+            bot.send_message(message.chat.id, 'Я не знаю що відповісти 😢')
+
+
+@bot.callback_query_handler(func=lambda call: True)
+def callback_inline(call):
+    rec1 = open('C:\\Users\\s\\Documents\\Рецепти\\Борщ.txt', 'r', encoding="utf-8")
+    rec2 = open('C:\\Users\\s\\Documents\\Рецепти\\Вареники з картоплею.txt', 'r', encoding="utf-8")
+    rec3 = open('C:\\Users\\s\\Documents\\Рецепти\\Тартелики_з_червоною_рибою_та_сиром.txt', 'r', encoding="utf-8")
+    rec4 = open('C:\\Users\\s\\Documents\\Рецепти\\Шашлик в гранатовому соку.txt', 'r', encoding="utf-8")
+    rec5 = open('C:\\Users\\s\\Documents\\Рецепти\\Салат_із_крабових_палочок_та_мівіни.txt', 'r', encoding="utf-8")
+    rec6 = open('C:\\Users\\s\\Documents\\Рецепти\\Гуляш.txt', 'r', encoding="utf-8")
+    rec7 = open('C:\\Users\\s\\Documents\\Рецепти\\Вафельні трубочки на маргарині.txt', 'r', encoding="utf-8")
+    rec8 = open('C:\\Users\\s\\Documents\\Рецепти\\Оладки з дріжджами.txt', 'r', encoding="utf-8")
+    rec9 = open('C:\\Users\\s\\Documents\\Рецепти\\Хрусткі_сирні_крокети_з_плавленим_сиром.txt', 'r', encoding="utf-8")
+    rec10 = open('C:\\Users\\s\\Documents\\Рецепти\\Сирний суп з шафраном.txt', 'r', encoding="utf-8")
+    rec11 = open('C:\\Users\\s\\Documents\\Рецепти\\Рибні котлети.txt', 'r', encoding="utf-8")
+    rec12 = open('C:\\Users\\s\\Documents\\Рецепти\\Класичні деруни.txt', 'r', encoding="utf-8")
+    rec13 = open('C:\\Users\\s\\Documents\\Рецепти\\Бананові панкейки.txt', 'r', encoding="utf-8")
+    rec14 = open('C:\\Users\\s\\Documents\\Рецепти\\Гарбуз в духовці.txt', 'r', encoding="utf-8")
+    rec15 = open('C:\\Users\\s\\Documents\\Рецепти\\Полуничний шейк.txt', 'r', encoding="utf-8")
+    rec16 = open('C:\\Users\\s\\Documents\\Рецепти\\Домашній йогурт.txt', 'r', encoding="utf-8")
+    rec17 = open('C:\\Users\\s\\Documents\\Рецепти\\Солені зелені томати на зиму.txt', 'r', encoding="utf-8")
+    rec18 = open('C:\\Users\\s\\Documents\\Рецепти\\Суп п`юре з броколі.txt', 'r', encoding="utf-8")
+    rec19 = open('C:\\Users\\s\\Documents\\Рецепти\\Фрапе в домашніх умовах.txt', 'r', encoding="utf-8")
+    rec20 = open('C:\\Users\\s\\Documents\\Рецепти\\Англійське рагу із гарбуза.txt', 'r', encoding="utf-8")
+    rec21 = open('C:\\Users\\s\\Documents\\Рецепти\\Заморожені овочі в духовці.txt', 'r', encoding="utf-8")
+    rec22 = open('C:\\Users\\s\\Documents\\Рецепти\\Запечена картопля з грибами.txt', 'r', encoding="utf-8")
+    rec23 = open('C:\\Users\\s\\Documents\\Рецепти\\Картопля в часниковому соусі.txt', 'r', encoding="utf-8")
+    rec24 = open('C:\\Users\\s\\Documents\\Рецепти\\Кіш_з_домашнім_плавленим_сиром_та_грибами.txt', 'r',
+                 encoding="utf-8")
+    rec25 = open('C:\\Users\\s\\Documents\\Рецепти\\Котлети із капусти.txt', 'r', encoding="utf-8")
+    rec26 = open('C:\\Users\\s\\Documents\\Рецепти\\Курячі_відбивні_в_картопляній_шубці.txt', 'r', encoding="utf-8")
+    rec27 = open('C:\\Users\\s\\Documents\\Рецепти\\Піца з лососем та цибулею.txt', 'r', encoding="utf-8")
+    rec28 = open('C:\\Users\\s\\Documents\\Рецепти\\Соковиті голубці.txt', 'r', encoding="utf-8")
+    rec29 = open('C:\\Users\\s\\Documents\\Рецепти\\Чахохбілі іх курки.txt', 'r', encoding="utf-8")
+    rec30 = open('C:\\Users\\s\\Documents\\Рецепти\\Млинці з мясом.txt', 'r', encoding="utf-8")
+    rec31 = open('C:\\Users\\s\\Documents\\Рецепти\\Смузі з бананом.txt', 'r', encoding="utf-8")
+    rec32 = open('C:\\Users\\s\\Documents\\Рецепти\\Бананове морозиво.txt', 'r', encoding="utf-8")
+    rec33 = open('C:\\Users\\s\\Documents\\Рецепти\\Деруни з сиром.txt', 'r', encoding="utf-8")
+    rec34 = open('C:\\Users\\s\\Documents\\Рецепти\\Закуска з крабових паличок, яєць і сиру.txt', 'r', encoding="utf-8")
+    rec35 = open('C:\\Users\\s\\Documents\\Рецепти\\Запечена картопля з йогуртовим соусом.txt', 'r', encoding="utf-8")
+    rec36 = open('C:\\Users\\s\\Documents\\Рецепти\\Зелений салат з криветками та сирним омлетом.txt', 'r',
+                 encoding="utf-8")
+    rec37 = open('C:\\Users\\s\\Documents\\Рецепти\\Йогуртовий соус із зеленню та яйцем.txt', 'r', encoding="utf-8")
+    rec38 = open('C:\\Users\\s\\Documents\\Рецепти\\Краннач.txt', 'r', encoding="utf-8")
+    rec39 = open('C:\\Users\\s\\Documents\\Рецепти\\Овочевий салат із сирними кульками.txt', 'r', encoding="utf-8")
+    rec40 = open('C:\\Users\\s\\Documents\\Рецепти\\Пісто.txt', 'r', encoding="utf-8")
+    rec41 = open('C:\\Users\\s\\Documents\\Рецепти\\Салат “Цезар”.txt', 'r', encoding="utf-8")
+    rec42 = open('C:\\Users\\s\\Documents\\Рецепти\\Свинина з кисло-солодким перцем.txt', 'r', encoding="utf-8")
+    rec43 = open('C:\\Users\\s\\Documents\\Рецепти\\Сирна запіканка з білим шоколадом та малиною.txt', 'r',
+                 encoding="utf-8")
+    rec44 = open('C:\\Users\\s\\Documents\\Рецепти\\Смажений лосось з грейпфрутовим соусом.txt', 'r', encoding="utf-8")
+    rec45 = open('C:\\Users\\s\\Documents\\Рецепти\\Тушкована яловичина з гарбузом в пиві.txt', 'r', encoding="utf-8")
+    rec46 = open('C:\\Users\\s\\Documents\\Рецепти\\Фаршированні кабачки.txt', 'r', encoding="utf-8")
+    rec47 = open('C:\\Users\\s\\Documents\\Рецепти\\Французький салат Нісуаз.txt', 'r', encoding="utf-8")
+    rec48 = open('C:\\Users\\s\\Documents\\Рецепти\\Мясний салат з овочами по-корейськи.txt', 'r', encoding="utf-8")
+    try:
+        if call.message:
+            if call.data == 'rcp1':
+                bot.send_photo(call.message.chat.id, open('C:\\Users\\s\\Documents\\Рецепти\\Борщ.jpg', 'rb'))
+                bot.send_message(call.message.chat.id, rec1)
+                bot.send_photo(call.message.chat.id, open('C:\\Users\\s\\Documents\\Рецепти\\Борщ.jpg', 'rb'))
+            elif call.data == 'rcp2':
+                bot.send_message(call.message.chat.id, rec2)
+                bot.send_photo(call.message.chat.id, photo=open('C:\\Users\\s\\Documents\\Рецепти\\Вареники '
+                                                                'з картоплею.webp', 'rb'))
+            elif call.data == 'rcp3':
+                bot.send_message(call.message.chat.id, rec3)
+                bot.send_photo(call.message.chat.id, photo=open('C:\\Users\\s\\Documents\\Рецепти\\Тарталетки_з_'
+                                                                'червоною_рибою_та_сиром.jpg',
+                                                                'rb'))
+            elif call.data == 'rcp4':
+                bot.send_message(call.message.chat.id, rec4)
+                bot.send_photo(call.message.chat.id, photo=open('C:\\Users\\s\\Documents\\Рецепти\\Шашлик в '
+                                                                'гранатовому соку.jpg', 'rb'))
+            elif call.data == 'rcp5':
+                bot.send_message(call.message.chat.id, rec5)
+                bot.send_photo(call.message.chat.id, photo=open('C:\\Users\\s\\Documents\\Рецепти\\Салат_із_крабових_'
+                                                                'палочок_та_мівіни.webp', 'rb'))
+            elif call.data == 'rcp6':
+                bot.send_message(call.message.chat.id, rec6)
+                bot.send_photo(call.message.chat.id, open('C:\\Users\\s\\Documents\\Рецепти\\Гуляш.jpg ', 'rb'))
+            elif call.data == 'rcp7':
+                bot.send_message(call.message.chat.id, rec7)
+                bot.send_photo(call.message.chat.id, photo=open('C:\\Users\\s\\Documents\\Рецепти\\Вафельні трубочки '
+                                                                'на маргарині.jpg', 'rb'))
+            elif call.data == 'rcp8':
+                bot.send_message(call.message.chat.id, rec8)
+                bot.send_photo(call.message.chat.id, photo=open('C:\\Users\\s\\Documents\\Рецепти\\Оладки з '
+                                                                'дріжджами.jpg', 'rb'))
+            elif call.data == 'rcp9':
+                bot.send_message(call.message.chat.id, rec9)
+                bot.send_photo(call.message.chat.id, photo=open('C:\\Users\\s\\Documents\\Рецепти\\Хрусткі сирні '
+                                                                'крокети з плавленим сиром.jpg ', 'rb'))
+            elif call.data == 'rcp10':
+                bot.send_message(call.message.chat.id, rec10)
+                bot.send_photo(call.message.chat.id, photo=open('C:\\Users\\s\\Documents\\Рецепти\\Сирний суп з '
+                                                                'шафраном.jpg', 'rb'))
+            elif call.data == 'rcp11':
+                bot.send_message(call.message.chat.id, rec11)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Рибні котлети.jpg', 'rb'))
+            elif call.data == 'rcp12':
+                bot.send_message(call.message.chat.id, rec12)
+                bot.send_photo(call.message.chat.id, photo=open('C:\\Users\\s\\Documents\\Рецепти\\Деруни.jpg', 'rb'))
+            elif call.data == 'rcp13':
+                bot.send_message(call.message.chat.id, rec13)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Бананові панкейки.jpg', 'rb'))
+            elif call.data == 'rcp14':
+                bot.send_message(call.message.chat.id, rec14)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Гарбуз в духовці.jpg', 'rb'))
+            elif call.data == 'rcp15':
+                bot.send_message(call.message.chat.id, rec15)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Полуничний шейк.jpg', 'rb'))
+            elif call.data == 'rcp16':
+                bot.send_message(call.message.chat.id, rec16)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Домашній йогурт.jpg', 'rb'))
+            elif call.data == 'rcp17':
+                bot.send_message(call.message.chat.id, rec17)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Солені зелені томати на зиму.jpg', 'rb'))
+            elif call.data == 'rcp18':
+                bot.send_message(call.message.chat.id, rec18)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Суп п`юре з броколі.jpg', 'rb'))
+            elif call.data == 'rcp19':
+                bot.send_message(call.message.chat.id, rec19)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Фрапе в домашніх умовах.webp', 'rb'))
+            elif call.data == 'rcp20':
+                bot.send_message(call.message.chat.id, rec20)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Англійське рагу із гарбуза.jpg', 'rb'))
+            elif call.data == 'rcp21':
+                bot.send_message(call.message.chat.id, rec21)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Заморожені овочі в духовці.jpg', 'rb'))
+            elif call.data == 'rcp22':
+                bot.send_message(call.message.chat.id, rec22)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Запечена картопля з грибами.jpeg', 'rb'))
+            elif call.data == 'rcp23':
+                bot.send_message(call.message.chat.id, rec23)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Картопля в часниковому соусі.jpg', 'rb'))
+            elif call.data == 'rcp24':
+                bot.send_message(call.message.chat.id, rec24)
+                bot.send_photo(call.message.chat.id, photo=open(
+                    'C:\\Users\\s\\Documents\\Рецепти\\Кіш_з_домашнім_плавленим_сиром_та_грибами.jpg', 'rb'))
+            elif call.data == 'rcp25':
+                bot.send_message(call.message.chat.id, rec25)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Котлети із капусти.jpg', 'rb'))
+            elif call.data == 'rcp26':
+                bot.send_message(call.message.chat.id, rec26)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Курячі_відбивні_в_картопляній_шубці.jpg',
+                                          'rb'))
+            elif call.data == 'rcp27':
+                bot.send_message(call.message.chat.id, rec27)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Піца з лососем та цибулею.jpg', 'rb'))
+            elif call.data == 'rcp28':
+                bot.send_message(call.message.chat.id, rec28)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Соковиті голубці.jpg', 'rb'))
+            elif call.data == 'rcp29':
+                bot.send_message(call.message.chat.id, rec29)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Чахохбілі іх курки.jpg', 'rb'))
+            elif call.data == 'rcp30':
+                bot.send_message(call.message.chat.id, rec30)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Млинці з мясом.jpg', 'rb'))
+            elif call.data == 'rcp31':
+                bot.send_message(call.message.chat.id, rec31)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Смузі з бананом.jpg', 'rb'))
+            elif call.data == 'rcp32':
+                bot.send_photo(call.message.chat.id,
+                               open('C:\\Users\\s\\Documents\\Рецепти\\Бананове морозиво.jpg', 'rb'))
+                bot.send_message(call.message.chat.id, rec32)
+                bot.send_message(call.message.chat.id,
+                                 "https://www.smachno.in.ua/prygotuvannya.php?id=187")
+            elif call.data == 'rcp33':
+                bot.send_photo(call.message.chat.id,
+                               open('C:\\Users\\s\\Documents\\Рецепти\\Деруни з сиром.jpg', 'rb'))
+                bot.send_message(call.message.chat.id, rec33)
+                bot.send_message(call.message.chat.id,
+                                 "https://www.smachno.in.ua/prygotuvannya.php?id=202")
+            elif call.data == 'rcp34':
+                bot.send_photo(call.message.chat.id,
+                               open('C:\\Users\\s\\Documents\\Рецепти\\Закуска з крабових паличок, яєць і сиру.jpg',
+                                    'rb'))
+                bot.send_message(call.message.chat.id, rec34)
+                bot.send_message(call.message.chat.id,
+                                 "https://www.smachno.in.ua/prygotuvannya.php?id=181")
+            elif call.data == 'rcp35':
+                bot.send_photo(call.message.chat.id,
+                               open('C:\\Users\\s\\Documents\\Рецепти\\Запечена картопля з йогуртовим соусом.jpg',
+                                    'rb'))
+                bot.send_message(call.message.chat.id, rec35)
+                bot.send_message(call.message.chat.id,
+                                 "https://www.smachno.in.ua/prygotuvannya.php?id=235")
+            elif call.data == 'rcp36':
+                bot.send_photo(call.message.chat.id,
+                               open(
+                                   'C:\\Users\\s\\Documents\\Рецепти\\Зелений салат з криветками та сирним омлетом.jpg',
+                                   'rb'))
+                bot.send_message(call.message.chat.id, rec36)
+                bot.send_message(call.message.chat.id,
+                                 "https://www.smachno.in.ua/prygotuvannya.php?id=179")
+            elif call.data == 'rcp37':
+                bot.send_photo(call.message.chat.id,
+                               open('C:\\Users\\s\\Documents\\Рецепти\\Йогуртовий соус із зеленню та яйцем.jpg', 'rb'))
+                bot.send_message(call.message.chat.id, rec37)
+                bot.send_message(call.message.chat.id,
+                                 "https://www.smachno.in.ua/prygotuvannya.php?id=234")
+            elif call.data == 'rcp38':
+                bot.send_photo(call.message.chat.id,
+                               open('C:\\Users\\s\\Documents\\Рецепти\\Краннач.jpg', 'rb'))
+                bot.send_message(call.message.chat.id, rec38)
+                bot.send_message(call.message.chat.id,
+                                 "https://www.smachno.in.ua/prygotuvannya.php?id=257")
+            elif call.data == 'rcp39':
+                bot.send_photo(call.message.chat.id,
+                               open('C:\\Users\\s\\Documents\\Рецепти\\Овочевий салат із сирними кульками.jpg', 'rb'))
+                bot.send_message(call.message.chat.id, rec39)
+                bot.send_message(call.message.chat.id,
+                                 "https://www.smachno.in.ua/prygotuvannya.php?id=243")
+            elif call.data == 'rcp40':
+                bot.send_photo(call.message.chat.id,
+                               open('C:\\Users\\s\\Documents\\Рецепти\\Пісто.jpg', 'rb'))
+                bot.send_message(call.message.chat.id, rec40)
+                bot.send_message(call.message.chat.id,
+                                 "https://www.smachno.in.ua/prygotuvannya.php?id=137")
+            elif call.data == 'rcp41':
+                bot.send_photo(call.message.chat.id,
+                               open('C:\\Users\\s\\Documents\\Рецепти\\Салат “Цезар”.jpg', 'rb'))
+                bot.send_message(call.message.chat.id, rec41)
+                bot.send_message(call.message.chat.id,
+                                 "https://www.smachno.in.ua/prygotuvannya.php?id=128")
+            elif call.data == 'rcp42':
+                bot.send_photo(call.message.chat.id,
+                               open('C:\\Users\\s\\Documents\\Рецепти\\Свинина з кисло-солодким перцем.jpg', 'rb'))
+                bot.send_message(call.message.chat.id, rec42)
+                bot.send_message(call.message.chat.id,
+                                 "https://www.smachno.in.ua/prygotuvannya.php?id=214")
+            elif call.data == 'rcp43':
+                bot.send_photo(call.message.chat.id,
+                               open(
+                                   'C:\\Users\\s\\Documents\\Рецепти\\Сирна запіканка з білим шоколадом та малиною.jpg',
+                                   'rb'))
+                bot.send_message(call.message.chat.id, rec43)
+                bot.send_message(call.message.chat.id,
+                                 "https://www.smachno.in.ua/prygotuvannya.php?id=252")
+            elif call.data == 'rcp44':
+                bot.send_photo(call.message.chat.id,
+                               open('C:\\Users\\s\\Documents\\Рецепти\\Смажений лосось з грейпфрутовим соусом.jpg',
+                                    'rb'))
+                bot.send_message(call.message.chat.id, rec44)
+                bot.send_message(call.message.chat.id,
+                                 "https://www.smachno.in.ua/prygotuvannya.php?id=151")
+            elif call.data == 'rcp45':
+                bot.send_photo(call.message.chat.id,
+                               open('C:\\Users\\s\\Documents\\Рецепти\\Тушкована яловичина з гарбузом в пиві.jpg',
+                                    'rb'))
+                bot.send_message(call.message.chat.id, rec45)
+                bot.send_message(call.message.chat.id,
+                                 "https://www.smachno.in.ua/prygotuvannya.php?id=211")
+            elif call.data == 'rcp46':
+                bot.send_photo(call.message.chat.id,
+                               open('C:\\Users\\s\\Documents\\Рецепти\\Фаршированні кабачки.jpg', 'rb'))
+                bot.send_message(call.message.chat.id, rec46)
+                bot.send_message(call.message.chat.id,
+                                 "https://www.smachno.in.ua/prygotuvannya.php?id=294")
+            elif call.data == 'rcp47':
+                bot.send_photo(call.message.chat.id,
+                               open('C:\\Users\\s\\Documents\\Рецепти\\Французький салат Нісуаз.jpg', 'rb'))
+                bot.send_message(call.message.chat.id, rec47)
+                bot.send_message(call.message.chat.id,
+                                 "https://www.smachno.in.ua/prygotuvannya.php?id=253")
+            elif call.data == 'rcp48':
+                bot.send_photo(call.message.chat.id,
+                               open('C:\\Users\\s\\Documents\\Рецепти\\Мясний салат з овочами по-корейськи.jpg', 'rb'))
+                bot.send_message(call.message.chat.id, rec48)
+                bot.send_message(call.message.chat.id,
+                                 "https://www.smachno.in.ua/prygotuvannya.php?id=363")
+            elif call.data == 'prod1':
+                bot.send_message(call.message.chat.id, rec14)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Гарбуз в духовці.jpg', 'rb'))
+                bot.send_message(call.message.chat.id, rec20)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Англійське рагу із гарбуза.jpg', 'rb'))
+            elif call.data == 'prod2':
+                bot.send_message(call.message.chat.id, rec26)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Курячі_відбивні_в_картопляній_шубці.jpg', 'rb'))
+                bot.send_message(call.message.chat.id, rec23)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Картопля в часниковому соусі.jpg','rb'))
+                bot.send_message(call.message.chat.id, rec20)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Англійське рагу із гарбуза.jpg', 'rb'))
+            elif call.data == 'prod3':
+                bot.send_message(call.message.chat.id, rec31)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Смузі з бананом.jpg', 'rb'))
+                bot.send_message(call.message.chat.id, rec14)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Гарбуз в духовці.jpg','rb'))
+                bot.send_message(call.message.chat.id, rec19)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Фрапе в домашніх умовах.webp', 'rb'))
+            elif call.data == 'prod4':
+                bot.send_message(call.message.chat.id, rec21)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Заморожені овочі в духовці.jpg', 'rb'))
+            elif call.data == 'prod5':
+                bot.send_message(call.message.chat.id, rec38)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Краннач.jpg', 'rb'))
+            elif call.data == 'prod6':
+                bot.send_message(call.message.chat.id, rec31)
+                bot.send_photo(call.message.chat.id,
+                               photo=open('C:\\Users\\s\\Documents\\Рецепти\\Смузі з бананом.jpg', 'rb'))
+            # remove inline buttons
+            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Усі рецепти",
+                                  reply_markup=None)
+
+    except Exception as e:
+        print(repr(e))
+
+
+# RUN
+bot.polling(none_stop=True)
